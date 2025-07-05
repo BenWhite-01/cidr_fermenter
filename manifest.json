@@ -4,7 +4,8 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-      "default_icon": "media/logo.png"
+        "default_popup": "instructions/instructions.html",
+        "default_icon": "media/logo.png"
     },
     "permissions": [
         "contextMenus",
