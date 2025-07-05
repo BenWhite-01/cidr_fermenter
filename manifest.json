@@ -1,0 +1,17 @@
+{
+    "name": "Cidr Fermenter",
+    "description": "Analyse cidr blocks",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "popup/popup.html",
+      "default_icon": "media/logo.png"
+    },
+    "permissions": [
+        "contextMenus",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "scripts/background.js"
+    }
+}
