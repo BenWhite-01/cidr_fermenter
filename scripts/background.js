@@ -1,4 +1,4 @@
-import { isValidIPv4, isValidCidr } from "./cidr_utils.js";
+import { isValidCidrOrIpv4 } from "./cidr_utils.js";
 
 console.log('Mmmmmm cidr...')
 
@@ -17,10 +17,30 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     console.log('Fermenting cidr: ' + info.selectionText)
 
     // Validate selected text
-    if (!isValidIPv4(info.selectionText) && !isValidCidr(info.selectionText)) {
+    if (!isValidCidrOrIpv4(info.selectionText)) {
+      console.debug('Bad Apples! Invalid selection')
+      // Custom toast
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        func: () => alert("Bad Apples! Invalid CIDR or IP address selected."),
+        func: () => {
+          const toast = document.createElement('div');
+          toast.textContent = '⚠️ Invalid CIDR or IPv4 address selected';
+          Object.assign(toast.style, {
+            position: 'fixed',
+            top: '10px',
+            right: '10px',
+            padding: '10px 15px',
+            background: '#ff4136',
+            color: 'white',
+            fontSize: '14px',
+            borderRadius: '6px',
+            zIndex: 9999,
+            boxShadow: '0 2px 6px rgba(0,0,0,0.3)'
+          });
+      
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 3000);
+        }
       });
       return;
     }

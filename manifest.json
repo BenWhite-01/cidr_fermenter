@@ -9,11 +9,11 @@
     "permissions": [
         "contextMenus",
         "storage",
-        "scripting",
-        "https://*/*"
+        "scripting"
     ],
     "host_permissions": [
-        "https://*/*"
+        "https://*/*",
+        "http://*/*"
     ],
     "background": {
         "service_worker": "scripts/background.js",
