@@ -15,10 +15,10 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "ferment-cidr" && info.selectionText) {
     console.log('Fermenting cidr: ' + info.selectionText)
-
+    let selection = info.selectionText.replace(/\s/g,'')
     // Validate selected text
-    if (!isValidCidrOrIpv4(info.selectionText)) {
-      console.debug('Bad Apples! Invalid selection')
+    if (!isValidCidrOrIpv4(selection)) {
+      console.log('Bad Apples! Invalid selection')
       // Custom toast
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
@@ -46,7 +46,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }
 
     // Open popup menu
-    chrome.storage.local.set({ cidr: info.selectionText }, () => {
+    chrome.storage.local.set({ cidr: selection }, () => {
       chrome.windows.create({
         url: chrome.runtime.getURL("popup/popup.html"),
         type: "popup",
