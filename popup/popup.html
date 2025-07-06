@@ -1,17 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>CIDR Fermenter</title>
-    <script src="popup.js" defer></script>
+    <meta charset="UTF-8">
+    <title>Responsive Grid Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
-    <h1>CIDR Fermenter</h1>
-    <hr>
-    <h2>CIDR Info</h2>
-    <div id="cidr-output">Loading...</div>
+    <div class="grid-container">
+        <!-- Row 1: Logo + Header -->
+        <div class="header">
+            <div class="logo">LOGO</div>
+            <div class="page-title">Page Header</div>
+        </div>
+
+        <!-- Row 2: 5 squares -->
+        <div class="row-2">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+
+        <!-- Rows 3–6: 8 squares -->
+        <div class="square-row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="square-row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="square-row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="square-row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+
+        <!-- Row 7: Footer -->
+        <div class="footer">
+            <p>Line 1: Responsive footer text.</p>
+            <p>Line 2: Fits small screens.</p>
+            <p>Line 3: Compact font.</p>
+            <p>Line 4: Still readable.</p>
+            <p>Line 5: No scrolling needed!</p>
+        </div>
+    </div>
 </body>
 
 </html>

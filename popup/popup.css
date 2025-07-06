@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.grid-container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows:
+    minmax(60px, 1fr)      /* Row 1: header */
+    minmax(60px, 1fr)      /* Row 2: 5 boxes */
+    repeat(4, minmax(40px, auto)) /* Rows 3–6: 8 boxes */
+    2fr;                   /* Row 7: footer */
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 0.9rem;
+  background: #f4f4f4;
+}
+
+.logo {
+  background: #ccc;
+  text-align: center;
+}
+
+.page-title {
+  padding-left: 10px;
+}
+
+.row-2 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  padding: 0 8px;
+  align-items: center;
+}
+
+.row-2 .box {
+  aspect-ratio: 1 / 1;
+  background: #add8e6;
+  width: 100%;
+}
+
+.square-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 2px;
+}
+
+.square-row .box {
+  flex: 1 1 12%;
+  aspect-ratio: 1 / 1;
+  background: #90ee90;
+  margin: 0 1px;
+}
+
+.footer {
+  background: #eee;
+  padding: 10px;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+.footer p {
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+@media (min-height: 600px) {
+  .footer {
+    font-size: 1rem;
+  }
+}
