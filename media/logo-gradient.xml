@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 406 502">
+    <defs>
+        <linearGradient id="appleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="10%" stop-color="rgb(255 200 0)" />
+            <stop offset="25%" stop-color="#ff0000" />
+            <stop offset="100%" stop-color="#CDDC39" />
+        </linearGradient>
+        <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5F9759" />
+            <stop offset="100%" stop-color="#CDDC39" />
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <!-- Gradient Path -->
+        <path fill="url(#appleGradient)"
+            d="M200.3 490c109.5 0 181-88.6 198.2-198 9.2-58.6-26.1-112.4-67.5-148.7-34.9-30.6-80.6-18.6-130.7-18.6-43.3 0-83.3-16.7-116 6.9C34.7 167.6-10.4 227 2.3 292 23.5 401.4 90.9 490 200.3 490Z" />
+
+        <!-- Green Leaf -->
+        <path fill="url(#leafGradient)"
+            d="M311.2 0c20.3 0 39.1 6 54.8 16.5a98.7 98.7 0 0 1-153 71A98.7 98.7 0 0 1 311.2 0Z" />
+    </g>
+</svg>
+  

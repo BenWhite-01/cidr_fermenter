@@ -1,86 +1,198 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+  --margin: 6px;
+  --gutter: 6px;
+  --col-1: #5F9759;
+  --col-2: #D7A600;
+  --col-3: #ED373D;
+  /* --col-4: #593837; */
+  --col-4: #935555;
+  --col-5: #E4E4E4;
+  --col-bg: #FDF0D5;
 }
 
-html, body {
-  height: 100vh;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--col-bg);
+}
+
+body {
   font-family: sans-serif;
 }
 
 .grid-container {
-  display: grid;
-  height: 100vh;
-  grid-template-rows:
-    minmax(60px, 1fr)      /* Row 1: header */
-    minmax(60px, 1fr)      /* Row 2: 5 boxes */
-    repeat(4, minmax(40px, auto)) /* Rows 3–6: 8 boxes */
-    2fr;                   /* Row 7: footer */
-}
-
-.header {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: center;
-  padding: 0 10px;
-  font-size: 0.9rem;
-  background: #f4f4f4;
-}
-
-.logo {
-  background: #ccc;
-  text-align: center;
-}
-
-.page-title {
-  padding-left: 10px;
-}
-
-.row-2 {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  padding: 0 8px;
-  align-items: center;
-}
-
-.row-2 .box {
-  aspect-ratio: 1 / 1;
-  background: #add8e6;
+  height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 3fr 2.5fr;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+  padding: var(--margin);
 }
 
-.square-row {
+/* Row wrapper — each full row takes one grid row */
+.row {
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+/* Row 1: Logo and title */
+.row-1 {
+  flex-direction: row;
   flex-wrap: nowrap;
-  gap: 0;
-  padding: 2px;
-}
-
-.square-row .box {
-  flex: 1 1 12%;
-  aspect-ratio: 1 / 1;
-  background: #90ee90;
-  margin: 0 1px;
-}
-
-.footer {
-  background: #eee;
-  padding: 10px;
-  font-size: 0.85rem;
+  align-items: center;
+  text-align: center;
   overflow: hidden;
 }
 
-.footer p {
-  margin-bottom: 4px;
-  line-height: 1.2;
+.logo-container {
+  height: 100%;
+  aspect-ratio: 1;
+}
+.logo-container > img {
+  height: 100%;
 }
 
-@media (min-height: 600px) {
-  .footer {
-    font-size: 1rem;
-  }
+.title-container {
+  flex-grow: 1;
+}
+
+.title-container > h1 {
+  font-family: Arial, sans-serif;
+  font-size: 8vh;
+  margin: -3vh;
+  line-height: 1;
+  /* mix-blend-mode: multiply; */
+  color: var(--col-1);
+}
+.title-container > h1:nth-child(2) {
+  margin-left: 3.2vh;
+}
+
+/* Row 2: CIDR byte blocks */
+.row-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: var(--gutter);
+}
+
+.cidr-byte {
+  aspect-ratio: 1 / 1;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  width: inherit
+}
+
+/* Target each cidr-byte by position */
+.row-2 .cidr-byte:nth-child(1) {
+  background-color: var(--col-1);
+}
+.row-2 .cidr-byte:nth-child(2) {
+  background-color: var(--col-2);
+}
+.row-2 .cidr-byte:nth-child(3) {
+  background-color: var(--col-3);
+}
+.row-2 .cidr-byte:nth-child(4) {
+  background-color: var(--col-4);
+  /* color: white; */
+}
+.row-2 .cidr-byte:nth-child(5) {
+  background-color: var(--col-5);
+  color: var(--col-4);
+}
+
+/* Row 3: CIDR bit blocks */
+.row-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 2px;
+  color: white;
+  /* height: 100%;
+  width: 100%; */
+}
+
+.cidr-bit-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1px;
+}
+
+.cidr-bit {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  /* color: white; */
+  font-size: 0.9rem;
+  border-radius: 0;
+}
+
+/* Rounded corners for first/last in each row */
+.cidr-bit-row .cidr-bit:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.cidr-bit-row .cidr-bit:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* Background color by row position */
+.row-3 .cidr-bit-row:nth-child(1) .cidr-bit {
+  background-color: var(--col-1);
+}
+.row-3 .cidr-bit-row:nth-child(2) .cidr-bit {
+  background-color: var(--col-2);
+  /* color: black; */
+}
+.row-3 .cidr-bit-row:nth-child(3) .cidr-bit {
+  background-color: var(--col-3);
+}
+.row-3 .cidr-bit-row:nth-child(4) .cidr-bit {
+  background-color: var(--col-4);
+}
+
+/* Row 4: Stats */
+.row-4 {
+  display: block;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,td {
+  border-top: 1px solid var(--col-2);
+  border-bottom: 1px solid var(--col-2);
+  text-align: left;
+}
+
+tr {
+  cursor: copy;
+}
+
+tr:hover td {
+  text-decoration: underline;
 }

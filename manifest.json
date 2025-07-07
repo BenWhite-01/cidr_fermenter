@@ -5,7 +5,11 @@
     "manifest_version": 3,
     "action": {
         "default_popup": "instructions/instructions.html",
-        "default_icon": "media/logo.png"
+        "default_icon": {
+            "16": "media/logo-gradient-16.png",
+            "48": "media/logo-gradient-48.png",
+            "128": "media/logo-gradient-128.png"
+        }
     },
     "permissions": [
         "contextMenus",
