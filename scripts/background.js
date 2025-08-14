@@ -1,4 +1,4 @@
-import { isValidCidrOrIpv4 } from "./cidr_utils.js";
+import { matcher } from "./cidr_utils.js";
 
 console.log('Mmmmmm cidr...')
 
@@ -14,10 +14,11 @@ chrome.runtime.onInstalled.addListener(() => {
 // Handle context menu item click
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "ferment-cidr" && info.selectionText) {
-    console.log('Fermenting cidr: ' + info.selectionText)
     let selection = info.selectionText.replace(/\s/g,'')
+    console.log(`Fermenting cidr: ${info.selectionText}`)
+
     // Validate selected text
-    if (!isValidCidrOrIpv4(selection)) {
+    if (!matcher.test(selection)) {
       console.log('Bad Apples! Invalid selection')
       // Custom toast
       chrome.scripting.executeScript({
