@@ -46,7 +46,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }
 
     // Open popup menu
-    chrome.storage.local.set({ cidr: selection }, () => {
+    chrome.storage.session.set({ selection: selection }, () => {
       chrome.windows.create({
         url: chrome.runtime.getURL("popup/popup.html"),
         type: "popup",
