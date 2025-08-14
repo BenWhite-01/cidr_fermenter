@@ -1,56 +1,39 @@
+import { Cidr } from "../scripts/cidr_utils.js"
+
 // --- Functions --- //
 
-/*
-  TEMPORARY - to be completed
-  Render the popup window ui given a cidr value
-*/
-function renderCidr(cidr) {
-  // if (!isValidCidrOrIpv4(cidr)) {
-  //   throw new Error(`Cannot update page data with invalid cidr address ('${cidr}')`);
-  // }
+// Render the popup window ui given a cidr value
+function renderCidr(selection) {
+  const cidr = new Cidr(selection)
 
-  cidr = cidr.split('/')
-  let cidr_bytes = cidr[0].split('.')
-  let mask = cidr[1] ? Number(cidr[1]) : 0
-
-  // console.log(cidr)
-  // console.log(cidr_bytes)
-  // console.log(mask)
-
+  // Update cidr-byte-4 with value of mask
+  document.getElementById("cidr-byte-4").setAttribute('value', cidr.prefix)
   for (let i = 0; i < 4; ++i) {
-    // console.log(`cidr-byte-${i} = ${cidr_bytes[i]}`);
     // Render cidr byte value
-    document.getElementById(`cidr-byte-${i}`).setAttribute('value', cidr_bytes[i])
-    // console.log(Number(cidr_bytes[i]).toString(2).padStart(8, "0"))
-
+    document.getElementById(`cidr-byte-${i}`).setAttribute('value', cidr.bytes[i])
+    
     // Render cidr bit values for byte i
-    let j = 0;
-    for (const bit of Number(cidr_bytes[i]).toString(2).padStart(8, "0")) {
+    for (let j = 0; j < 8; ++j) {
       let element = document.getElementById(`cidr-bit-${i}-${j}`)
-      element.innerHTML = bit
-      if (i*8+j < mask) {
-        // console.log(`  cidr-bit-${i}-${j} = ${bit}`);
+      element.innerHTML = cidr.bits[i][j]
+      if (cidr.networkBit(i,j)) {
         element.style.backgroundColor = null
       }
       else {
-        // console.log(` *cidr-bit-${i}-${j} = ${bit}`);
         element.style.backgroundColor = "var(--col-5)"
         element.style.color = "var(--col-4)"
         element.style.fontStyle = "italic"
       }
-      ++j;
     }
   }
 
-  // Update cidr-byte-4 with value of mask
-  document.getElementById("cidr-byte-4").setAttribute('value', mask)
-
   // Update detail values
-  document.getElementById("base-ip").innerHTML = cidr_bytes.join('-')
-  document.getElementById("first-usable-ip").innerHTML = cidr_bytes.join('-')
-  document.getElementById("last-usable-ip").innerHTML = cidr_bytes.join('-')
-  document.getElementById("broadcast-ip").innerHTML = cidr_bytes.join('-')
-  document.getElementById("count-ips").innerHTML = cidr_bytes.join('-')
+  document.getElementById("count-ips").innerHTML = cidr.count_ips
+  document.getElementById("network-ip").innerHTML = cidr.network_ip
+  document.getElementById("first-usable-ip").innerHTML = cidr.first_usable_ip
+  document.getElementById("last-usable-ip").innerHTML = cidr.last_usable_ip
+  document.getElementById("broadcast-ip").innerHTML = cidr.broadcast_ip
+  document.getElementById("network-mask").innerHTML = cidr.mask
 }
 
 // --- Event Listeners --- //
@@ -95,13 +78,13 @@ document.querySelectorAll('.cidr-byte').forEach(input => {
 console.debug('running popup.js');
 
 // Retrieve cidr value from storage
-chrome.storage.local.get('cidr', ({ cidr }) => {
-  if (!cidr) {
+chrome.storage.session.get('selection', ({ selection }) => {
+  if (!selection) {
     console.log('Failed to retrieve CIDR address from local storage');
     return;
   }
-  console.debug(`retreived \'${cidr}\' from storage`);
+  console.debug(`retreived \'${selection}\' from storage`);
 
   // Render popup with cidr values
-  renderCidr(cidr)
+  renderCidr(selection)
 });
