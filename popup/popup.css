@@ -114,8 +114,10 @@ body {
   /* color: white; */
 }
 .row-2 .cidr-byte:nth-child(5) {
-  background-color: var(--col-5);
-  color: var(--col-4);
+    background-color: var(--col-5);
+    color: var(--col-4);
+    box-shadow: inset 0px 0px 0px 3px var(--col-4);
+    font-style: italic;
 }
 
 /* Row 3: CIDR bit blocks */
@@ -141,7 +143,6 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  /* color: white; */
   font-size: 0.9rem;
   border-radius: 0;
 }
@@ -157,19 +158,57 @@ body {
 }
 
 /* Background color by row position */
-.row-3 .cidr-bit-row:nth-child(1) .cidr-bit {
-  background-color: var(--col-1);
+.row-3 .cidr-bit-row:nth-child(1) {
+  .cidr-bit {
+    background-color: var(--col-1);
+  }
+  .cidr-bit.masked {
+    background-color: var(--col-5);
+    font-style: italic;
+    border: 3px solid var(--col-1);
+    color: var(--col-1);
+  }
 }
-.row-3 .cidr-bit-row:nth-child(2) .cidr-bit {
-  background-color: var(--col-2);
-  /* color: black; */
+.row-3 .cidr-bit-row:nth-child(2) {
+  .cidr-bit {
+    background-color: var(--col-2);
+  }
+  .cidr-bit.masked {
+    background-color: var(--col-5);
+    font-style: italic;
+    border: 3px solid var(--col-2);
+    color: var(--col-2);
+  }
 }
-.row-3 .cidr-bit-row:nth-child(3) .cidr-bit {
-  background-color: var(--col-3);
+.row-3 .cidr-bit-row:nth-child(3) {
+  .cidr-bit {
+    background-color: var(--col-3);
+  }
+  .cidr-bit.masked {
+    background-color: var(--col-5);
+    font-style: italic;
+    border: 3px solid var(--col-3);
+    color: var(--col-3);
+  }
 }
-.row-3 .cidr-bit-row:nth-child(4) .cidr-bit {
-  background-color: var(--col-4);
+.row-3 .cidr-bit-row:nth-child(4) {
+  .cidr-bit {
+    background-color: var(--col-4);
+  }
+  .cidr-bit.masked {
+    background-color: var(--col-5);
+    font-style: italic;
+    border: 3px solid var(--col-4);
+    color: var(--col-4);
+  }
 }
+
+/* .masked {
+  background-color: var(--col-5);
+  border: 3px solid var(--col-4);
+  font-style: italic;
+  color: var(--col);
+} */
 
 /* Row 4: Stats */
 .row-4 {

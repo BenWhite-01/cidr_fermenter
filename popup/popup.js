@@ -17,12 +17,10 @@ function renderCidr(selection) {
       let element = document.getElementById(`cidr-bit-${i}-${j}`)
       element.innerHTML = cidr.bits[i][j]
       if (cidr.networkBit(i,j)) {
-        element.style.backgroundColor = null
+        element.classList.remove("masked")
       }
       else {
-        element.style.backgroundColor = "var(--col-5)"
-        element.style.color = "var(--col-4)"
-        element.style.fontStyle = "italic"
+        element.classList.add("masked")
       }
     }
   }
